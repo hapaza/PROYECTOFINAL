@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hospital San Pedro</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-purple">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="IMG/img1.avif" alt="Hospital San Pedro" height="40" loading="lazy">
+                Hospital San Pedro
+                
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <button class="nav-link btn btn-link" id="loginBtn">Iniciar Sesión</button>
+                    </li>
+                    <li class="nav-item">
+                        <button class="nav-link btn btn-link" id="infoBtn">Información</button>
+                    </li>
+                    <li class="nav-item">
+                        <button class="nav-link btn btn-link" id="medicoBtn">Personal Médico</button>
+                    </li>
+                    <li class="nav-item">
+                        <button class="nav-link btn btn-link" id="citaBtn">Cita Médica</button>
+                    </li>
+                    <li class="nav-item">
+                        <button class="nav-link btn btn-link" id="urgenciaBtn">Registro de Urgencia</button>
+                    </li>
+                    <!-- En la sección del navbar, agrega este nuevo ítem -->
+                    <li class="nav-item">
+                        <button class="nav-link btn btn-link" id="pacientesBtn">Lista de Pacientes</button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero bg-light-purple text-white text-center py-5">
+        <div class="container">
+            <h1 class="display-4">Hospital de Segundo Nivel "San Pedro"</h1>
+            <p class="lead">Cuidando tu salud con excelencia médica</p>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container my-5">
+        <section id="counters" class="mb-5">
+            <h2 class="text-center mb-4">Estadísticas de Pacientes</h2>
+            <div class="row text-center">
+                <div class="col-md-3">
+                    <div class="card counter-card">
+                        <div class="card-body">
+                            <h3 class="counter" id="leveCount">0</h3>
+                            <p class="text-muted">Leve</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card counter-card">
+                        <div class="card-body">
+                            <h3 class="counter" id="moderadoCount">0</h3>
+                            <p class="text-muted">Moderado</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card counter-card">
+                        <div class="card-body">
+                            <h3 class="counter" id="urgenteCount">0</h3>
+                            <p class="text-muted">Urgente</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card counter-card bg-critical">
+                        <div class="card-body">
+                            <h3 class="counter" id="criticoCount">0</h3>
+                            <p class="text-muted">Crítico</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="info" class="mb-5 d-none">
+            <h2 class="text-center mb-4">Información del Hospital</h2>
+            <div class="card">
+                <div class="card-body">
+                    <p>El Hospital San Pedro es una institución de segundo nivel comprometida con la salud de nuestra comunidad.</p>
+                    <p>Contamos con especialistas en diversas áreas médicas y tecnología de punta para el diagnóstico y tratamiento.</p>
+                    <p>Horario de atención: Lunes a Viernes de 7:00 a 19:00, Sábados de 8:00 a 14:00</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Modals -->
+    <!-- Login Modal -->
+    <div class="modal fade" id="loginModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-purple text-white">
+                    <h5 class="modal-title">Iniciar Sesión</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="loginForm">
+                        <div class="mb-3">
+                            <label for="loginUser" class="form-label">Código de Usuario</label>
+                            <input type="text" class="form-control" id="loginUser" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="loginPass" class="form-label">Contraseña</label>
+                            <input type="password" class="form-control" id="loginPass" required>
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <button type="submit" class="btn btn-purple">Ingresar</button>
+                            <button type="button" class="btn btn-link" id="registerBtn">Registrarse</button>
+                        </div>
+                    </form>
+                    <div id="loginError" class="alert alert-danger mt-3 d-none"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Register Modal -->
+    <div class="modal fade" id="registerModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-purple text-white">
+                    <h5 class="modal-title">Registro de Usuario</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="registerForm">
+                        <div class="mb-3">
+                            <label for="registerEmail" class="form-label">Correo Electrónico</label>
+                            <input type="email" class="form-control" id="registerEmail" required>
+                            <div class="invalid-feedback">Por favor ingrese un correo válido</div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="registerPassword" class="form-label">Contraseña</label>
+                            <input type="password" class="form-control" id="registerPassword" required>
+                            <div class="invalid-feedback">La contraseña debe tener al menos 8 caracteres, una mayúscula y un número</div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="confirmPassword" class="form-label">Confirmar Contraseña</label>
+                            <input type="password" class="form-control" id="confirmPassword" required>
+                            <div class="invalid-feedback">Las contraseñas no coinciden</div>
+                        </div>
+                        <button type="submit" class="btn btn-purple">Registrarse</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Verification Modal -->
+    <div class="modal fade" id="verificationModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-purple text-white">
+                    <h5 class="modal-title">Verificación de Código</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Se ha enviado un código de verificación a su correo electrónico</p>
+                    <form id="verificationForm">
+                        <div class="mb-3">
+                            <label for="verificationCode" class="form-label">Código de 6 dígitos</label>
+                            <input type="text" class="form-control" id="verificationCode" maxlength="6" required>
+                            <div class="invalid-feedback">El código debe tener exactamente 6 dígitos</div>
+                        </div>
+                        <button type="submit" class="btn btn-purple">Verificar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Credentials Modal -->
+    <div class="modal fade" id="credentialsModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-purple text-white">
+                    <h5 class="modal-title">Tus Credenciales</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Guarda esta información en un lugar seguro:</p>
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <p><strong>Código de Usuario:</strong> <span id="generatedUser"></span></p>
+                            <p><strong>Contraseña:</strong> <span id="generatedPass"></span></p>
+                            <p class="text-muted small">La contraseña mostrada es la encriptada para referencia</p>
+                        </div>
+                    </div>
+                    <button type="button" class="btn btn-purple" data-bs-dismiss="modal">Continuar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Medical Staff Login Modal -->
+    <div class="modal fade" id="medicoLoginModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-purple text-white">
+                    <h5 class="modal-title">Inicio de Sesión Personal Médico</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="d-grid gap-2">
+                        <button class="btn btn-outline-purple" id="asistenteBtn">Asistente</button>
+                        <button class="btn btn-outline-purple" id="doctorBtn">Doctor</button>
+                        <button class="btn btn-outline-purple" id="especialistaBtn">Especialista</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cita Médica Modal -->
+    <div class="modal fade" id="citaModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header bg-purple text-white">
+                    <h5 class="modal-title">Registro de Cita Médica</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="citaForm">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="nombreCompleto" class="form-label">Nombre Completo</label>
+                                <input type="text" class="form-control" id="nombreCompleto" required>
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <label for="edad" class="form-label">Edad</label>
+                                <input type="number" class="form-control" id="edad" min="1" required>
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <label for="genero" class="form-label">Género</label>
+                                <select class="form-select" id="genero" required>
+                                    <option value="" selected disabled>Seleccionar</option>
+                                    <option value="Hombre">Hombre</option>
+                                    <option value="Mujer">Mujer</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="documento" class="form-label">Documento de Identidad (CI o Pasaporte)</label>
+                                <input type="text" class="form-control" id="documento" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="gravedad" class="form-label">Nivel de Gravedad</label>
+                                <select class="form-select" id="gravedad" required>
+                                    <option value="" selected disabled>Seleccionar</option>
+                                    <option value="Leve">Leve</option>
+                                    <option value="Moderado">Moderado</option>
+                                    <option value="Urgente">Urgente</option>
+                                    <option value="Crítico">Crítico</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="sintomas" class="form-label">Síntomas</label>
+                            <textarea class="form-control" id="sintomas" rows="3" required></textarea>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="medicamentos" class="form-label">Medicamentos</label>
+                                <textarea class="form-control" id="medicamentos" rows="2"></textarea>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="examenes" class="form-label">Exámenes</label>
+                                <textarea class="form-control" id="examenes" rows="2"></textarea>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="doctor" class="form-label">Selección de Doctor</label>
+                                <select class="form-select" id="doctor" required>
+                                    <option value="" selected disabled>Seleccionar</option>
+                                    <option value="Dr. Juan Pérez - Cardiología">Dr. Juan Pérez - Cardiología</option>
+                                    <option value="Dra. María Gómez - Pediatría">Dra. María Gómez - Pediatría</option>
+                                    <option value="Dr. Carlos López - Traumatología">Dr. Carlos López - Traumatología</option>
+                                    <option value="Dra. Ana Rodríguez - Neurología">Dra. Ana Rodríguez - Neurología</option>
+                                    <option value="Dr. Luis Martínez - Medicina General">Dr. Luis Martínez - Medicina General</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="fechaHora" class="form-label">Fecha y Hora</label>
+                                <input type="datetime-local" class="form-control" id="fechaHora" required>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-purple">Registrar Cita</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Confirmación Cita Modal -->
+    <div class="modal fade" id="confirmacionModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header bg-purple text-white">
+                    <h5 class="modal-title">Confirmación de Cita Médica</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <h5 class="card-title">Resumen de la Cita</h5>
+                            <div id="citaResumen"></div>
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <button type="button" class="btn btn-outline-purple" id="imprimirBtn">
+                            <i class="fas fa-print me-2"></i>Imprimir Formulario
+                        </button>
+                        <button type="button" class="btn btn-purple" id="confirmarBtn">Confirmar Cita</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Urgencia Modal -->
+    <div class="modal fade" id="urgenciaModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header bg-danger text-white">
+                    <h5 class="modal-title">Registro de Urgencia Médica</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="urgenciaForm">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="urgenciaNombre" class="form-label">Nombre Completo</label>
+                                <input type="text" class="form-control" id="urgenciaNombre" required>
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <label for="urgenciaEdad" class="form-label">Edad</label>
+                                <input type="number" class="form-control" id="urgenciaEdad" min="1" required>
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <label for="urgenciaGenero" class="form-label">Género</label>
+                                <select class="form-select" id="urgenciaGenero" required>
+                                    <option value="" selected disabled>Seleccionar</option>
+                                    <option value="Hombre">Hombre</option>
+                                    <option value="Mujer">Mujer</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="urgenciaDocumento" class="form-label">Documento de Identidad</label>
+                                <input type="text" class="form-control" id="urgenciaDocumento" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="urgenciaGravedad" class="form-label">Nivel de Gravedad</label>
+                                <select class="form-select" id="urgenciaGravedad" required>
+                                    <option value="" selected disabled>Seleccionar</option>
+                                    <option value="Leve">Leve</option>
+                                    <option value="Moderado">Moderado</option>
+                                    <option value="Urgente">Urgente</option>
+                                    <option value="Crítico">Crítico</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="urgenciaSintomas" class="form-label">Síntomas</label>
+                            <textarea class="form-control" id="urgenciaSintomas" rows="3" required></textarea>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="urgenciaMedicamentos" class="form-label">Medicamentos actuales</label>
+                                <textarea class="form-control" id="urgenciaMedicamentos" rows="2"></textarea>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="urgenciaAlergias" class="form-label">Alergias conocidas</label>
+                                <textarea class="form-control" id="urgenciaAlergias" rows="2"></textarea>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-danger">Registrar Urgencia</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Dashboard Modal -->
+    <div class="modal fade" id="dashboardModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header bg-purple text-white">
+                    <h5 class="modal-title">Historial de Citas Médicas</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped table-hover">
+                            <thead class="table-purple">
+                                <tr>
+                                    <th>Nombre</th>
+                                    <th>Edad</th>
+                                    <th>Género</th>
+                                    <th>Documento</th>
+                                    <th>Síntomas</th>
+                                    <th>Gravedad</th>
+                                    <th>Doctor</th>
+                                    <th>Fecha</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody id="citasTableBody">
+                                <!-- Las citas se llenarán dinámicamente -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-purple" data-bs-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal de Lista de Pacientes -->
+     <div class="modal fade" id="pacientesModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header bg-purple text-white">
+                <h5 class="modal-title">Lista de Pacientes Registrados</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover">
+                        <thead class="table-purple">
+                            <tr>
+                                <th>ID</th>
+                                <th>Nombre Completo</th>
+                                <th>Edad</th>
+                                <th>Género</th>
+                                <th>Documento</th>
+                                <th>Tipo</th>
+                                <th>Gravedad</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="pacientesTableBody">
+                            <!-- Los pacientes se cargarán aquí dinámicamente -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <!-- Critical Alert -->
+    <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+        <div id="criticalAlert" class="toast align-items-center text-white bg-danger border-0 d-none" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="d-flex">
+                <div class="toast-body">
+                    <i class="fas fa-exclamation-triangle me-2"></i>
+                    <strong>¡Paciente Crítico Registrado!</strong> Se requiere atención inmediata.
+                </div>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-purple text-white py-4 mt-5">
+        <div class="container text-center">
+            <p class="mb-0">© 2023 Hospital San Pedro. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/citas.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,162 @@
+:root {
+    --purple-primary: #6a0dad;
+    --purple-secondary: #8a2be2;
+    --purple-light: #e6e6fa;
+    --purple-dark: #4b0082;
+    --danger: #dc3545;
+    --warning: #ffc107;
+    --success: #28a745;
+}
+
+/* General Styles */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f8f9fa;
+}
+
+/* Navbar */
+.bg-purple {
+    background-color: var(--purple-primary) !important;
+}
+
+.navbar-brand {
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+
+
+/* Buttons */
+.btn-purple {
+    background-color: var(--purple-primary);
+    color: white;
+    border: none;
+}
+
+.btn-purple:hover {
+    background-color: var(--purple-dark);
+    color: white;
+}
+
+.btn-outline-purple {
+    color: var(--purple-primary);
+    border-color: var(--purple-primary);
+}
+
+.btn-outline-purple:hover {
+    background-color: var(--purple-primary);
+    color: white;
+}
+
+/* Hero Section */
+.hero {
+    background: linear-gradient(135deg, var(--purple-primary), var(--purple-secondary));
+    padding: 4rem 0;
+}
+
+.bg-light-purple {
+    background-color: var(--purple-light);
+}
+
+/* Cards */
+.counter-card {
+    border-left: 5px solid var(--purple-primary);
+    transition: transform 0.3s;
+}
+
+.counter-card:hover {
+    transform: translateY(-5px);
+}
+
+.bg-critical {
+    background-color: rgba(220, 53, 69, 0.1);
+    border-left: 5px solid var(--danger) !important;
+}
+
+/* Tables */
+.table-purple {
+    background-color: var(--purple-primary);
+    color: white;
+}
+
+/* Form Validation */
+.is-invalid {
+    border-color: var(--danger);
+}
+
+.is-valid {
+    border-color: var(--success);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .hero {
+        padding: 2rem 0;
+    }
+    
+    .display-4 {
+        font-size: 2.5rem;
+    }
+}
+
+/* Animations */
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.pulse {
+    animation: pulse 2s infinite;
+}
+
+/* Toast Notification */
+.toast {
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+/* Estilos para la tabla de pacientes */
+#pacientesModal .table th {
+    vertical-align: middle;
+}
+
+#pacientesModal .table td {
+    vertical-align: middle;
+}
+img{
+    align-content: center;
+}
+.action-buttons {
+    white-space: nowrap;
+}
+
+.btn-action {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.875rem;
+    margin: 0 2px;
+}
+
+/* Estilos para los badges de gravedad */
+.badge-leve {
+    background-color: var(--success);
+}
+
+.badge-moderado {
+    background-color: var(--warning);
+    color: #000;
+}
+
+.badge-urgente {
+    background-color: var(--danger);
+}
+
+.badge-critico {
+    background-color: #000;
+}
+.navbar-brand img{
+    height: 50px;
+    transition: all 0.3s ease;
+    border-radius: 5px;
+    
+}
